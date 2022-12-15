@@ -79,6 +79,5 @@ int main(int ac, char *av[])
 		printf("bad nb of args\n");
     //parsing manu
     init_data(&data);
-    printf("1\n");
     build_window(&data);
 }

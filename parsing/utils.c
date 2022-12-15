@@ -1,6 +1,6 @@
 #include "../cub.h"
 
-int	ft_strncmp(char	*s1, char	*s2, size_t	n)
+int	ft_strncmp(const char	*s1, const char	*s2, size_t	n)
 {
 	size_t			i;
 	unsigned char	str1;
@@ -18,7 +18,7 @@ int	ft_strncmp(char	*s1, char	*s2, size_t	n)
 	return (0);
 }
 
-size_t	ft_strlen(char	*str)
+size_t	ft_strlen(const char	*str)
 {
 	int	i;
 

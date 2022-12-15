@@ -81,14 +81,14 @@ typedef struct t_data
 
 // parsing
 int ft_check_cub(char *filename);
-size_t ft_strlen(const char *str);
-int ft_strncmp(const char *s1, const char *s2, size_t n);
+size_t ft_strlen(char *str);
+int ft_strncmp(char *s1, char *s2, size_t n);
 int ft_check_access(char *filename);
 int ft_check_dir(char *filename);
 char **ft_split(char const *s, char c);
 char **parse(char *filename);
-char *ft_strjoin(const char *s1, const char *s2);
+char *ft_strjoin(char *s1, char *s2);
 void ft_print_split(char **map);
-char *ft_strjoin(const char *src, const char *dest);
+char *ft_strjoin(char *src, char *dest);
 
 #endif

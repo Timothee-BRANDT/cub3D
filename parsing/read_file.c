@@ -61,7 +61,7 @@ void	*ft_calloc( size_t	count, size_t	size)
 	return (ptr);
 }
 
-char	*ft_strjoin(char	*s1, char	*s2)
+char	*ft_strjoin_free(char *s1, char *s2)
 {
 	int		i;
 	int		j;
