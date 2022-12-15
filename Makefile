@@ -15,15 +15,20 @@ CFLAGS = -Wall -Werror -Wextra -g
 NAME = cub3D
 I_DIR = include
 L_FT = libft
+M_MLX = minilibx
 
-SRC = main.c				\
+SRC =	parsing/check_file.c	\
+		parsing/utils.c			\
+		parsing/ft_split.c		\
+		parsing/read_file.c		\
+		main.c					\
 
 OBJ = $(SRC:%.c=%.o)
 
-all: cub3D.h $(NAME)
+all: cub.h $(NAME)
 
 $(NAME): $(L_FT)/libft.a $(OBJ)
-		$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJ) -I$(I_DIR) -L$(L_FT) -lft
+		$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJ) -I$(I_DIR) -L$(L_FT) -L$(M_MLX) -lft
 
 $(L_FT)/libft.a:
 	make -C $(L_FT)
