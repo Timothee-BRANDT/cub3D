@@ -93,4 +93,12 @@ char *ft_strjoin(char *s1, char *s2);
 void ft_print_split(char **map);
 char *ft_strjoin(char *src, char *dest);
 
+//raycasting
+void pixel_put(t_data *data, int x, int y, int color);
+int rgb_to_int(int r, int g, int b);
+void check_player_orientation(t_data *data);
+void set_direction(t_data *data, char c);
+void set_fov(t_data *data, char c);
+void init_data(t_data *data);
+
 #endif
