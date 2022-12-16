@@ -34,34 +34,30 @@ typedef struct s_img
 	int endian;
 } t_img;
 
-typedef struct s_mlx
-{
-	void *ptr;
-	void *mlx_win;
-	t_img img;
-	t_img map;
-} t_mlx;
-
-typedef struct s_text
-{
-	int		r;
-	int		g;
-	int		b;
-	int		floor;
-	int		top;
-	char	*north;
-	char	*south;
-	char	*east;
-	char	*west;
-	t_img	img_north;
-	t_img	img_south;
-	t_img	img_east;
-	t_img	img_west;
-}	t_text;
-
 typedef struct t_data
 {
+	// pointeur window
+	void *ptr;
+	void *mlx_win;
+	// textures
+	int r;
+	int g;
+	int b;
+	int floor_color;
+	int top_color;
+	char *path_north;
+	char *path_south;
+	char *path_east;
+	char *path_west;
+	t_img img_north;
+	t_img img_south;
+	t_img img_east;
+	t_img img_west;
+	// map 
 	char	**map;
+	// variables
+	t_img 	cub;
+	t_img 	map;
 	double	posX;
 	double	posY;
 	double	dirX;
@@ -70,13 +66,19 @@ typedef struct t_data
 	double	planeY;
 	double	ray_x;
 	double	ray_y;
-	double	s_dist_x;
-	double	s_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
 	double	delta_x;
 	double	delta_y;
 	double	cam_x;
-	t_mlx	*mlx;
-	t_text	*text;
+	double	ms;
+	double	wall_distance;
+	int		next_x;
+	int		next_y;
+	int		hit;
+	int		side;
+	int		map_x;
+	int		map_y;
 } t_data;
 
 // parsing

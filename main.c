@@ -12,11 +12,11 @@
 
 #include "cub.h"
 
-void pixel_put(t_mlx *mlx, int x, int y, int color)
+void pixel_put(t_data *data, int x, int y, int color)
 {
     char *dst;
 
-    dst = mlx->img.addr + (y * mlx->img.line_length + x * (mlx->img.bits_per_pixel / 8));
+    dst = data->cub.addr + (y * data->cub.line_length + x * (data->cub.bits_per_pixel / 8));
     *(unsigned int *)dst = color;
 }
 
@@ -25,32 +25,101 @@ int rgb_to_int(int r, int g, int b)
     return (r << 16 | g << 8 | b);
 }
 
+void    set_fov(t_data *data, char c)
+{
+    if (c == 'N')
+    {
+        data->planeX = 0.66;
+        data->planeY = 0;
+    }
+    else if (c == 'S')
+    {
+        data->planeX = -0.66;
+        data->planeY = 0;
+    }
+    else if (c == 'E')
+    {
+        data->planeY = 0.66;
+        data->planeX = 0;
+    }
+    else
+    {
+        data->planeY = -0.66;
+        data->planeX = 0;
+    }
+}
+
+void    set_direction(t_data *data, char c)
+{
+    if (c == 'N')
+    {
+        data->dirX = 0;
+        data->dirY = -1;
+    }
+    else if (c == 'S')
+    {
+        data->dirX = 0;
+        data->dirY = 1;
+    }
+    else if (c == 'E')
+    {
+        data->dirX = 1;
+        data->dirY = 0;
+    }
+    else
+    {
+        data->dirX = -1;
+        data->dirY = 0;
+    }
+}
+
+void    check_player_orientation(t_data *data)
+{
+    int     i;
+    int     j;
+    char    c;
+
+    i = 0;
+    while (data->map[i])
+    {
+        j = 0;
+        while (data->map[i][j])
+        {
+            if (data->map[i][j] == 'N' || data->map[i][j] == 'S' \
+            || data->map[i][j] == 'E' || data->map[i][j] == 'W')
+            {
+                c = data->map[i][j];
+                data->posX = j;
+                data->posY = i;
+                set_direction(data, c);
+                set_fov(data, c);
+            }
+            j++;
+        }
+        i++;
+    }
+}
+
 void init_data(t_data *data)
 {
-    data->text = malloc(sizeof(t_text));
-    data->text->north = ft_strdup("../textures/NORD.xpm");
-    data->text->south = ft_strdup("../textures/SOUTH.xpm");
-    data->text->east = ft_strdup("../textures/EAST.xpm");
-    data->text->west = ft_strdup("../textures/WEST.xpm");
-    data->text->floor = rgb_to_int(255, 122, 0); // parsing manu
-    data->text->top = rgb_to_int(152, 192, 0);  // parsing manu
-    data->posX = 22;
-    data->posY = 12;
-    data->dirX = -1;
-    data->dirY = 0;
-    data->planeX = 0;
-    data->planeY = 0.66;
+    data->path_north = ft_strdup("../textures/NORD.xpm");
+    data->path_south = ft_strdup("../textures/SOUTH.xpm");
+    data->path_east = ft_strdup("../textures/EAST.xpm");
+    data->path_west = ft_strdup("../textures/WEST.xpm");
+    data->floor_color = rgb_to_int(255, 122, 0); // parsing manu
+    data->top_color = rgb_to_int(152, 192, 0);  // parsing manu
+    data->ms = 0.06;
+    set_player_pos(data);
 }
 
 void build_window(t_data *data)
 {
-    data->mlx = malloc(sizeof(t_mlx));
-    data->mlx->ptr = mlx_init();
-    data->mlx->mlx_win = mlx_new_window(data->mlx->ptr, WIDTH, HEIGHT, "Hello world!");
-    data->mlx->img.img_data = mlx_new_image(data->mlx->ptr, WIDTH, HEIGHT);
-    data->mlx->img.addr = mlx_get_data_addr(data->mlx->img.img_data, &data->mlx->img.bits_per_pixel, &data->mlx->img.line_length, &data->mlx->img.endian);
-    mlx_put_image_to_window(data->mlx->ptr, data->mlx->mlx_win, data->mlx->img.img_data, 0, 0);
-    mlx_loop(data->mlx->ptr);
+    data->ptr = mlx_init();
+    data->mlx_win = mlx_new_window(data->ptr, WIDTH, HEIGHT, "Hello world!");
+    data->cub.img_data = mlx_new_image(data->ptr, WIDTH, HEIGHT);
+    data->cub.addr = mlx_get_data_addr(data->cub.img_data, &data->cub.bits_per_pixel, &data->cub.line_length, &data->cub.endian);
+    mlx_put_image_to_window(data->ptr, data->mlx_win, data->cub.img_data, 0, 0);
+    mlx_loop(data->ptr);
 }
 
 int main(int ac, char *av[])
