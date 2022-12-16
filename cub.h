@@ -16,7 +16,7 @@
 #define BUFFER_SIZE 100
 
 #include "minilibx/mlx.h"
-#include "libft/libft.h"
+#include "Libft/libft.h"
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -27,15 +27,23 @@
 
 typedef struct s_img
 {
-	void *img_data;
-	char *addr;
-	int bits_per_pixel;
-	int line_length;
-	int endian;
+	void	*img_data;
+	void	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 } t_img;
 
 typedef struct t_data
 {
+	// parsing
+	char **checker;
+	char *path_north;
+	char *path_south;
+	char *path_east;
+	char *path_west;
+	char *C;
+	char *F;
 	// pointeur window
 	void *ptr;
 	void *mlx_win;
@@ -44,11 +52,7 @@ typedef struct t_data
 	int g;
 	int b;
 	int floor_color;
-	int top_color;
-	char *path_north;
-	char *path_south;
-	char *path_east;
-	char *path_west;
+	int sky_color;
 	t_img img_north;
 	t_img img_south;
 	t_img img_east;
@@ -57,7 +61,6 @@ typedef struct t_data
 	char	**map;
 	// variables
 	t_img 	cub;
-	t_img 	map;
 	double	posX;
 	double	posY;
 	double	dirX;
@@ -83,22 +86,43 @@ typedef struct t_data
 
 // parsing
 int ft_check_cub(char *filename);
-size_t ft_strlen(char *str);
-int ft_strncmp(char *s1, char *s2, size_t n);
+size_t ft_strlen_v2(char *str);
+int ft_strncmp_v2(char *s1, char *s2, size_t n);
 int ft_check_access(char *filename);
 int ft_check_dir(char *filename);
 char **ft_split(char const *s, char c);
 char **parse(char *filename);
 char *ft_strjoin(char *s1, char *s2);
 void ft_print_split(char **map);
-char *ft_strjoin(char *src, char *dest);
+int ft_isspace(int c);
+char *ft_strjoin_v2(char *src, char *dest);
+char *ft_strdup(char *str);
+void init_checker(t_data *parsing);
+int print_and_exit(char *str, int ret);
+char *ft_join_free_ss(char *s1, char *s2);
+void free_and_replace(t_data *data, int mod, int change);
+int ft_check_texture(char *str, t_data *data);
+void check_NO(char *av, t_data *data, int index);
+void *ft_calloc(size_t count, size_t size);
+int ft_atoi(const char *str);
+void get_texture(char *str, t_data *data, int mod);
+void check_EA(char *av, t_data *data, int index);
+void check_WE(char *av, t_data *data, int index);
+void check_SO(char *av, t_data *data, int index);
+void check_C(char *str, t_data *data, int begin);
+void check_F(char *str, t_data *data, int begin);
+int ft_isdigit(int arg);
+int ft_strlen2tab(char **strs);
 
 //raycasting
-void pixel_put(t_data *data, int x, int y, int color);
-int rgb_to_int(int r, int g, int b);
-void check_player_orientation(t_data *data);
-void set_direction(t_data *data, char c);
-void set_fov(t_data *data, char c);
-void init_data(t_data *data);
+int		rgb_to_int(int r, int g, int b);
+void	pixel_put(t_data *data, int x, int y, int color);
+void	check_player_orientation(t_data *data);
+void	set_direction(t_data *data, char c);
+void	set_fov(t_data *data, char c);
+void	init_data(t_data *data);
+void 	set_textures_img(t_data *data);
+void	print_sky(t_data *data);
+void	print_ground(t_data *data);
 
 #endif

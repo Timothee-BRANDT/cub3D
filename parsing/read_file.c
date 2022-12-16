@@ -17,7 +17,7 @@ char	*ft_read_file(int fd)
 			exit (-1);
 		}
 		buf[byte_read] = '\0';
-		str = ft_strjoin(str, buf);
+		str = ft_strjoin_v2(str, buf);
 		if (!str)
 			return (NULL);
 	}
@@ -61,7 +61,7 @@ void	*ft_calloc( size_t	count, size_t	size)
 	return (ptr);
 }
 
-char	*ft_strjoin_free(char *s1, char *s2)
+char	*ft_strjoin_v2(char	*s1, char	*s2)
 {
 	int		i;
 	int		j;
@@ -73,7 +73,7 @@ char	*ft_strjoin_free(char *s1, char *s2)
 		s1 = ft_calloc(1, 1);
 	if (!s1 || !s2)
 		return (NULL);
-	str = malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
+	str = malloc(sizeof(char) * ft_strlen_v2(s1) + ft_strlen_v2(s2) + 1);
 	if (!str)
 		return (NULL);
 	while (s1[++i])

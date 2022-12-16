@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbrandt <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 21:40:22 by tbrandt           #+#    #+#             */
-/*   Updated: 2022/01/13 21:41:08 by tbrandt          ###   ########.fr       */
+/*   Created: 2022/03/14 17:09:11 by tbrandt           #+#    #+#             */
+/*   Updated: 2022/03/14 17:09:13 by tbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ft_putstr(char *str)
 {
-	int i;
+	int	i;
 
-	i = 0;
-	while(str[i])
-		write(1, &str[i++], 1);
+	i = -1;
+	while (str[++i])
+		write(1, &str[i], 1);
 }

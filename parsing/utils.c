@@ -1,6 +1,6 @@
 #include "../cub.h"
 
-int	ft_strncmp(const char	*s1, const char	*s2, size_t	n)
+int	ft_strncmp(char	*s1, char	*s2, size_t	n)
 {
 	size_t			i;
 	unsigned char	str1;
@@ -18,7 +18,7 @@ int	ft_strncmp(const char	*s1, const char	*s2, size_t	n)
 	return (0);
 }
 
-size_t	ft_strlen(const char	*str)
+size_t	ft_strlen_v2(char	*str)
 {
 	int	i;
 
@@ -43,4 +43,18 @@ void	ft_print_split(char	**map)
 	}
 	else
 		printf("Map is empty.\n");
+}
+
+int print_and_exit(char	*str, int ret)
+{
+	write(2, str, ft_strlen_v2(str));
+	exit(ret);
+}
+
+int	ft_isspace(int c)
+{
+	if (((c == '\n') || (c == '\v') || (c == '\t')) \
+	|| ((c == '\r') || (c == '\f') || (c == ' ')))
+		return (1);
+	return (0);
 }

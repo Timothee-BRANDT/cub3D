@@ -6,7 +6,7 @@ int	ft_check_cub(char	*filename)
 	size_t	sizelen;
 	int		i;
 
-	sizelen = ft_strlen(filename);
+	sizelen = ft_strlen_v2(filename);
 	i = 0;
 	while (filename[i] && filename[i] != '.')
 	{
@@ -17,7 +17,7 @@ int	ft_check_cub(char	*filename)
 		str = filename + i;
 	else
 		return (1);
-	if (!ft_strncmp(str, ".cub", ft_strlen(str)))
+	if (!ft_strncmp_v2(str, ".cub", ft_strlen_v2(str)))
 		return (0);
 	return (1);
 }
@@ -28,10 +28,7 @@ int ft_check_access(char	*filename)
 
 	i = access(filename, R_OK);
 	if (i == -1)
-	{
-		write(2, "access error\n", 13);
-		exit(-1);
-	}
+		print_and_exit("error : bad access\n", -1);
 	return (i);
 }
 
@@ -41,9 +38,6 @@ int	ft_check_dir(char	*filename)
 	
 	i = open(filename, O_DIRECTORY);
 	if (i != -1)
-	{
-		write(2, "directory is not allowed\n", 25);
-		exit(-1);	
-	}
+		print_and_exit("error: directory is not allowed\n", -1);
 	return (i);
 }

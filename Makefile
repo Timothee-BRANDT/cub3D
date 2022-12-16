@@ -21,6 +21,9 @@ SRC =	parsing/check_file.c	\
 		parsing/utils.c			\
 		parsing/ft_split.c		\
 		parsing/read_file.c		\
+		raycasting/set_params.c	\
+		raycasting/colors.c		\
+		raycasting/painting.c	\
 		main.c					\
 
 OBJ = $(SRC:%.c=%.o)

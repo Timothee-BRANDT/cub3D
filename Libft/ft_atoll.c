@@ -1,50 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_gnl_join.c                                      :+:      :+:    :+:   */
+/*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbrandt <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/20 17:07:44 by tbrandt           #+#    #+#             */
-/*   Updated: 2022/01/13 18:16:25 by tbrandt          ###   ########.fr       */
+/*   Created: 2021/10/20 14:39:16 by tbrandt           #+#    #+#             */
+/*   Updated: 2022/05/05 17:19:04 by tbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_gnl_join(char *s1, char *s2)
+long long	ft_atoll(const char *str)
 {
-	char	*str;
-	int		i;
-	int		j;
+	int			i;
+	long long	result;
+	int			negative;
 
-	if (!s1)
-		s1 = ft_calloc(1, 1);
-	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
-	if (!str)
-		return (NULL);
 	i = 0;
-	j = 0;
-	while (s1 && s1[i])
+	result = 0;
+	negative = 1;
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\r' \
+	|| str[i] == '\t' || str[i] == '\v' || str[i] == '\f')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		str[i] = s1[i];
+		if (str[i] == '-')
+			negative = -1;
 		i++;
 	}
-	while (s2 && s2[j])
+	while (str[i] && ft_is_numeric(str[i]))
 	{
-		str[i] = s2[j];
+		result = result * 10 + (str[i] - 48);
 		i++;
-		j++;
 	}
-	str[i] = '\0';
-	free(s1);
-	return (str);
+	return (result * negative);
 }
-/*
-#include <stdio.h>
-int main()
-{
-	char s1 [] = "Coucou";
-	char s2 [] = "Bonsoir";
-	printf("%s\n", ft_strjoin(s1, s2));
-}*/

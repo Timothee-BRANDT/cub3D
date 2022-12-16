@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrandt <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:11:13 by tbrandt           #+#    #+#             */
-/*   Updated: 2021/10/28 14:08:58 by tbrandt          ###   ########.fr       */
+/*   Updated: 2022/10/27 16:46:37 by tbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,27 +31,17 @@ int	len(int n)
 	return (len);
 }
 
-char	*overflow(int n)
-{
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	else
-		return (ft_strdup("2147483647"));
-}
-
 char	*ft_itoa(int n)
 {
 	char	*str;
 	int		i;
 
-	if (n == -2147483648 || n == 2147483647)
-		return (overflow(n));
 	str = malloc(sizeof(char) * len(n) + 1);
 	if (!str)
 		return (NULL);
 	if (n == 0)
 		str[0] = '0';
-	i = len(n);
+	i = len(n) + 1;
 	if (n < 0)
 	{
 		str[0] = '-';

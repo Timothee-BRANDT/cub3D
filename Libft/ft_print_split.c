@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_print_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 13:47:06 by tbrandt           #+#    #+#             */
-/*   Updated: 2022/11/14 14:34:21 by tbrandt          ###   ########.fr       */
+/*   Created: 2022/06/10 17:50:26 by tbrandt           #+#    #+#             */
+/*   Updated: 2022/06/19 14:40:01 by mmatthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha(int c)
+void	ft_print_split(char	**map)
 {
-	if (c >= '0' && c <= '9')
-	{
-		printf("char :%c\n", c);
-		return (0);
-	}
-	else
-	{
-		printf("char :%c\n", c);
-		return (1);
-	}
-}
-
-int	ft_isnum_key(char *str)
-{
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (str && str[i])
+	while (map[i])
 	{
-		if (str[i] >= '0' && str[i] <= '9')
-			return (0);
+		printf("%s\n", map[i]);
 		i++;
 	}
-	return (1);
 }

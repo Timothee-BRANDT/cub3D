@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp_v2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 17:49:37 by tbrandt           #+#    #+#             */
-/*   Updated: 2022/11/14 14:36:11 by tbrandt          ###   ########.fr       */
+/*   Created: 2022/10/27 15:52:34 by tbrandt           #+#    #+#             */
+/*   Updated: 2022/11/14 14:36:26 by tbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(char *s1, char *s2, size_t n)
+int	ft_strncmp_v2(char *s1, char *s2, size_t n)
 {
 	size_t			i;
+	unsigned char	src;
+	unsigned char	dest;
 
 	i = 0;
 	if (!n)
 		return (n);
-	while ((s1[i] && s2[i]) && (i < n))
+	src = (unsigned char)s1[i];
+	dest = (unsigned char)s2[i];
+	while ((src && dest) && (i < n))
 	{
-		if (s1[i + 1] && !s2[i + 1] && s1[i + 1] != '=')
-			return (1);
-		if (s1[i] == '=' && !s2[i])
-			return (0);
-		else if (s1[i] == '=' && s2[i])
-			return (1);
-		else if (s1[i] != s2[i])
-			return (1);
+		src = (unsigned char)s1[i];
+		dest = (unsigned char)s2[i];
+		if (src != dest)
+			return (src - dest);
 		i++;
 	}
-	return (0);
+	return (src - dest);
 }

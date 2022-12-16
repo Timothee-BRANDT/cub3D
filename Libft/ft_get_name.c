@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_get_name.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 17:49:37 by tbrandt           #+#    #+#             */
-/*   Updated: 2022/11/14 14:36:11 by tbrandt          ###   ########.fr       */
+/*   Created: 2022/06/15 14:34:56 by tbrandt           #+#    #+#             */
+/*   Updated: 2022/06/22 13:28:56 by tbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(char *s1, char *s2, size_t n)
+char	*ft_get_name(char *str)
 {
-	size_t			i;
+	int		i;
+	char	*result;	
 
+	if (!str)
+		return (NULL);
 	i = 0;
-	if (!n)
-		return (n);
-	while ((s1[i] && s2[i]) && (i < n))
+	while (str[i] != '=')
+		i++;
+	result = malloc(sizeof(char *) * i);
+	i = 0;
+	while (str[i] && str[i] != '=')
 	{
-		if (s1[i + 1] && !s2[i + 1] && s1[i + 1] != '=')
-			return (1);
-		if (s1[i] == '=' && !s2[i])
-			return (0);
-		else if (s1[i] == '=' && s2[i])
-			return (1);
-		else if (s1[i] != s2[i])
-			return (1);
+		result[i] = str[i];
 		i++;
 	}
-	return (0);
+	result[i] = '\0';
+	return (result);
 }

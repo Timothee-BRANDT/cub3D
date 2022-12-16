@@ -16,16 +16,21 @@ void build_window(t_data *data)
 {
     data->ptr = mlx_init();
     data->mlx_win = mlx_new_window(data->ptr, WIDTH, HEIGHT, "Hello world!");
+    init_data(data);
     data->cub.img_data = mlx_new_image(data->ptr, WIDTH, HEIGHT);
     data->cub.addr = mlx_get_data_addr(data->cub.img_data, &data->cub.bits_per_pixel, &data->cub.line_length, &data->cub.endian);
+    set_textures_img(data);
+	print_sky(data);
+	print_ground(data);
     mlx_put_image_to_window(data->ptr, data->mlx_win, data->cub.img_data, 0, 0);
     mlx_loop(data->ptr);
 }
 
 int main(int ac, char *av[])
 {
-    t_data data;
+    t_data *data;
 
+	data = malloc(sizeof(t_data));
 	if (ac > 1 && ac < 3)
 	{
 		if (ft_check_cub(av[1]) == 0)
@@ -34,9 +39,9 @@ int main(int ac, char *av[])
 			{
 				if (ft_check_dir(av[1]) == -1)
 				{
-					data.map = parse(av[1]);
+					data->map = parse(av[1]);
 					//check_map(map);
-					ft_print_split(data.map);
+					ft_print_split(data->map);
                 }
 
 			}
@@ -47,6 +52,5 @@ int main(int ac, char *av[])
 	else
 		printf("bad nb of args\n");
     //parsing manu
-    init_data(&data);
-    build_window(&data);
+    build_window(data);
 }

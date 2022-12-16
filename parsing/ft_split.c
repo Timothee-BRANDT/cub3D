@@ -1,6 +1,5 @@
 #include "../cub.h"
 
-
 static	int	cnt_wd(const char	*str, char c)
 {
 	int	i;
