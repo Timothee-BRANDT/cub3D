@@ -22,6 +22,7 @@ void build_window(t_data *data)
     set_textures_img(data);
 	print_sky(data);
 	print_ground(data);
+	lets_play(data);
     mlx_put_image_to_window(data->ptr, data->mlx_win, data->cub.img_data, 0, 0);
     mlx_loop(data->ptr);
 }

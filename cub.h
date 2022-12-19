@@ -21,6 +21,8 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <float.h>
+#include <math.h>
 
 #define WIDTH 960
 #define HEIGHT 540
@@ -76,8 +78,8 @@ typedef struct t_data
 	double	cam_x;
 	double	ms;
 	double	wall_distance;
-	int		next_x;
-	int		next_y;
+	int		step_x;
+	int		step_y;
 	int		hit;
 	int		side;
 	int		map_x;
@@ -124,5 +126,9 @@ void	init_data(t_data *data);
 void 	set_textures_img(t_data *data);
 void	print_sky(t_data *data);
 void	print_ground(t_data *data);
+void 	dda(t_data *data, int x);
+void 	calculate_side_dist(t_data *data);
+void 	hit_and_side(t_data *data);
+void	lets_play(t_data *data);
 
 #endif
