@@ -51,3 +51,51 @@ void    print_ground(t_data *data)
         y++;
     }
 }
+
+void    print_pixels(t_data *data)
+{
+    while (++data->j <= data->draw_end)
+    {
+        data->tex_y = (int)data->tex_position & (64 - 1);
+        data->tex_y += 1;
+        data->tex_position += data->step;
+        if (data->hit && data->side && data->step_y < 0)
+            data->tex_color = data->img_north.addr + (data->tex_y * data->img_north.line_length - data->tex_x * (data->img_north.bits_per_pixel / 8));
+        else if (data->hit && data->side && data->step_y > 0)
+            data->tex_color = data->img_south.addr + (data->tex_y * data->img_south.line_length - (data->tex_x + 1) * (data->img_south.bits_per_pixel / 8));
+        else if (data->hit && !data->side && data->step_x > 0)
+            data->tex_color = data->img_east.addr + (data->tex_y * data->img_east.line_length - data->tex_x * (data->img_east.bits_per_pixel / 8));
+        else if (data->hit && !data->side && data->step_x < 0)
+            data->tex_color = data->img_west.addr + (data->tex_y * data->img_west.line_length - (data->tex_x + 1) * (data->img_west.bits_per_pixel / 8));
+        data->tex_pixel= data->cub.addr + (data->j * data->cub.line_length + data->i * (data->cub.bits_per_pixel / 8));
+        *(int *)data->tex_pixel = *(int *)data->tex_color;
+    }
+}
+
+void    set_textures_variables(t_data *data)
+{
+    if (!data->side)
+        data->wall_distance = data->side_dist_x - data->delta_x;
+    else
+        data->wall_distance = data->side_dist_y - data->delta_y;
+    data->line_height = (int)(HEIGHT / data->wall_distance);
+    data->draw_start = -data->line_height / 2 + HEIGHT / 2;
+    if (data->draw_start < 0)
+        data->draw_start = 0;
+    data->draw_end = data->line_height / 2 + HEIGHT / 2;
+    if (data->draw_end >= HEIGHT)
+        data->draw_end = HEIGHT + 1;
+    if (!data->side)
+        data->wall_x = data->posY + data->wall_distance * data->ray_y;
+    else
+       data->wall_x = data->posX + data->wall_distance * data->ray_x;
+    data->wall_x -= floor(data->wall_x);
+    data->tex_x = (int)(data->wall_x * 64);
+    if (!data->side && data->ray_x > 0)
+        data->tex_x = 64 - data->tex_x - 1;
+    if (data->side && data->ray_y < 0)
+        data->tex_x = 64 - data->tex_x - 1;
+    data->step = 1.0 * 64 / data->line_height;
+    data->tex_position = (data->draw_start - HEIGHT / 2.0 + data->line_height / 2.0) * data->step;
+    data->j = data->draw_start;
+}

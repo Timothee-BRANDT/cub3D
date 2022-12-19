@@ -58,9 +58,9 @@ void calculate_side_dist(t_data *data)
     }
 }
 
-void dda(t_data *data, int x)
+void dda(t_data *data)
 {
-    data->cam_x = 2 * x / (double)(WIDTH)-1;
+    data->cam_x = 2 * data->i / (double)(WIDTH) -1;
     data->ray_x = data->dirX + data->planeX * data->cam_x;
     data->ray_y = data->dirY + data->planeY * data->cam_x;
     data->map_x = (int)data->posX;
@@ -77,14 +77,28 @@ void dda(t_data *data, int x)
     hit_and_side(data);
 }
 
+void build_window(t_data *data)
+{
+    data->ptr = mlx_init();
+    data->mlx_win = mlx_new_window(data->ptr, WIDTH, HEIGHT, "cub3D");
+    init_data(data);
+    data->cub.img_data = mlx_new_image(data->ptr, WIDTH, HEIGHT);
+    data->cub.addr = mlx_get_data_addr(data->cub.img_data, &data->cub.bits_per_pixel, &data->cub.line_length, &data->cub.endian);
+    set_textures_img(data);
+	print_sky(data);
+	print_ground(data);
+	lets_play(data);
+    mlx_loop(data->ptr);
+}
+
 void    lets_play(t_data *data)
 {
-    int i;
-
-    i = 0;
-    while (i < WIDTH)
+    while (data->i < WIDTH)
     {
-        dda(data, i);
-        i++;
+        dda(data);
+        set_textures_variables(data);
+        print_pixels(data);
+        data->i++;
     }
+    mlx_put_image_to_window(data->ptr, data->mlx_win, data->cub.img_data, 0, 0);
 }

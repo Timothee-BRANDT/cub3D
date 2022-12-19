@@ -24,7 +24,7 @@
 #include <float.h>
 #include <math.h>
 
-#define WIDTH 960
+#define WIDTH 920
 #define HEIGHT 540
 
 typedef struct s_img
@@ -61,7 +61,7 @@ typedef struct t_data
 	t_img img_west;
 	// map 
 	char	**map;
-	// variables
+	// variables for dda and print_pixels
 	t_img 	cub;
 	double	posX;
 	double	posY;
@@ -78,12 +78,25 @@ typedef struct t_data
 	double	cam_x;
 	double	ms;
 	double	wall_distance;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
 	int		step_x;
 	int		step_y;
 	int		hit;
 	int		side;
 	int		map_x;
 	int		map_y;
+	// textures variables
+	char	*tex_color;
+	char	*tex_pixel;
+	int		tex_x;
+	int		tex_y;
+	double	wall_x;
+	double	step;
+	double	tex_position;
+	int		i;
+	int		j;
 } t_data;
 
 // parsing
@@ -126,9 +139,12 @@ void	init_data(t_data *data);
 void 	set_textures_img(t_data *data);
 void	print_sky(t_data *data);
 void	print_ground(t_data *data);
-void 	dda(t_data *data, int x);
+void 	dda(t_data *data);
 void 	calculate_side_dist(t_data *data);
 void 	hit_and_side(t_data *data);
 void	lets_play(t_data *data);
+void 	build_window(t_data *data);
+void 	set_textures_variables(t_data *data);
+void	print_pixels(t_data *data);
 
 #endif
