@@ -103,10 +103,10 @@ void    set_textures_img(t_data *data)
 
 void init_data(t_data *data)
 {
-    data->path_north = ft_strdup("textures/NORTH.xpm");
-    data->path_south = ft_strdup("textures/SOUTH.xpm");
-    data->path_east = ft_strdup("textures/EAST.xpm");
-    data->path_west = ft_strdup("textures/WEST.xpm");
+    data->path_north = ft_strdup("textures/basalt.xpm");
+    data->path_south = ft_strdup("textures/cracked_wall.xpm");
+    data->path_east = ft_strdup("textures/diamond.xpm");
+    data->path_west = ft_strdup("textures/furnace_front_on.xpm");
     data->floor_color = rgb_to_int(124, 122, 0); // parsing manu
     data->sky_color = rgb_to_int(0, 255, 255);   // parsing manu
     data->ms = 0.15;

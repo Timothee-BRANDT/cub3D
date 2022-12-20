@@ -12,18 +12,34 @@
 
 #include "../cub.h"
 
-void	move_w(t_data *data)
+void move_w(t_data *data)
 {
-   if((data->map[(int)data->posY][(int)(data->posX + data->dirX * data->ms)]) != '1')
+	if ((data->map[(int)data->posY][(int)(data->posX + data->dirX * data->ms)]) != '1')
 		data->posX += data->dirX * data->ms;
-   if((data->map[(int)(data->posY + data->dirY * data->ms)][(int)data->posX]) != '1')
+	if ((data->map[(int)(data->posY + data->dirY * data->ms)][(int)data->posX]) != '1')
 		data->posY += data->dirY * data->ms;
 }
 
-void	move_s(t_data *data)
+void move_s(t_data *data)
 {
-	if((data->map[(int)data->posY][(int)(data->posX - data->dirX * data->ms)]) != '1')
+	if ((data->map[(int)data->posY][(int)(data->posX - data->dirX * data->ms)]) != '1')
 		data->posX -= data->dirX * data->ms;
-   if((data->map[(int)(data->posY - data->dirY * data->ms)][(int)data->posX]) != '1')
+	if ((data->map[(int)(data->posY - data->dirY * data->ms)][(int)data->posX]) != '1')
 		data->posY -= data->dirY * data->ms;
+}
+
+void move_a(t_data *data)
+{
+	if (data->map[(int)data->posY][(int)(data->posX - data->planeX * data->ms)] != '1')
+		data->posX -= data->planeX * data->ms;
+	if (data->map[(int)(data->posY - data->planeY * data->ms)][(int)data->posX] != '1')
+		data->posY -= data->planeY * data->ms;
+}
+
+void move_d(t_data *data)
+{
+	if (data->map[(int)data->posY][(int)(data->posX + data->planeX * data->ms)] != '1')
+		data->posX += data->planeX * data->ms;
+	if (data->map[(int)(data->posY + data->planeY * data->ms)][(int)data->posX] != '1')
+		data->posY += data->planeY * data->ms;
 }

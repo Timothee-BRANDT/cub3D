@@ -32,6 +32,8 @@
 # define KEY_D 2
 # define KEY_W 13
 # define KEY_ESC 53
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
 
 
 typedef struct s_img
@@ -158,4 +160,8 @@ int		ft_close(t_data *data);
 int		key_press(int keycode, t_data *data);
 void	move_w(t_data *data);
 void	move_s(t_data *data);
+void 	move_a(t_data *data);
+void 	move_d(t_data *data);
+void 	rotate_left(t_data *data);
+void 	rotate_right(t_data *data);
 #endif

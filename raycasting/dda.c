@@ -44,7 +44,7 @@ void calculate_side_dist(t_data *data)
     else
     {
         data->step_x = 1;
-        data->side_dist_x = (data->map_x + 1.0 - data->posX) * data->delta_x;
+        data->side_dist_x = (data->map_x + 1 - data->posX) * data->delta_x;
     }
     if (data->ray_y < 0)
     {
@@ -54,7 +54,7 @@ void calculate_side_dist(t_data *data)
     else
     {
         data->step_y = 1;
-        data->side_dist_y = (data->map_y + 1.0 - data->posY) * data->delta_y;
+        data->side_dist_y = (data->map_y + 1 - data->posY) * data->delta_y;
     }
 }
 

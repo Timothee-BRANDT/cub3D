@@ -93,9 +93,9 @@ void    set_textures_variables(t_data *data)
     data->wall_x -= floor(data->wall_x);
     data->tex_x = (int)(data->wall_x * 64);
     if (!data->side && data->ray_x > 0)
-        data->tex_x = 64 - data->tex_x - 1;
+        data->tex_x = 64 - data->tex_x;
     if (data->side && data->ray_y < 0)
-        data->tex_x = 64 - data->tex_x - 1;
+        data->tex_x = 64 - data->tex_x;
     data->step = 1.0 * 64 / data->line_height;
     data->tex_position = (data->draw_start - HEIGHT / 2.0 + data->line_height / 2.0) * data->step;
     data->j = data->draw_start;
