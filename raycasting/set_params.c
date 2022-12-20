@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_params.c.c                                     :+:      :+:    :+:   */
+/*   set_params.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 13:47:17 by tbrandt           #+#    #+#             */
-/*   Updated: 2022/12/14 12:10:06 by tbrandt          ###   ########.fr       */
+/*   Updated: 2022/12/20 15:52:32 by tbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ void check_player_orientation(t_data *data)
             if (data->map[i][j] == 'N' || data->map[i][j] == 'S' || data->map[i][j] == 'E' || data->map[i][j] == 'W')
             {
                 c = data->map[i][j];
-                data->posX = j;
-                data->posY = i;
+                data->posX = j + 0.5;
+                data->posY = i + 0.5;
                 set_direction(data, c);
                 set_fov(data, c);
             }
@@ -109,6 +109,6 @@ void init_data(t_data *data)
     data->path_west = ft_strdup("textures/WEST.xpm");
     data->floor_color = rgb_to_int(124, 122, 0); // parsing manu
     data->sky_color = rgb_to_int(0, 255, 255);   // parsing manu
-    data->ms = 0.06;
+    data->ms = 0.15;
     check_player_orientation(data);
 }

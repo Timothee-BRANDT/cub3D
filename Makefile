@@ -6,7 +6,7 @@
 #    By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/13 10:49:10 by tbrandt           #+#    #+#              #
-#    Updated: 2022/12/13 10:59:36 by tbrandt          ###   ########.fr        #
+#    Updated: 2022/12/20 14:23:34 by tbrandt          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ SRC =	parsing/check_file.c	\
 		raycasting/colors.c		\
 		raycasting/painting.c	\
 		raycasting/dda.c		\
+		raycasting/keys.c		\
+		raycasting/moves.c		\
 		main.c					\
 
 OBJ = $(SRC:%.c=%.o)

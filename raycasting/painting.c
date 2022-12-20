@@ -6,7 +6,7 @@
 /*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 18:17:20 by tbrandt           #+#    #+#             */
-/*   Updated: 2022/12/14 12:10:06 by tbrandt          ###   ########.fr       */
+/*   Updated: 2022/12/20 15:40:42 by tbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void    print_ground(t_data *data)
 
 void    print_pixels(t_data *data)
 {
-    while (++data->j <= data->draw_end)
+    while (data->j <= data->draw_end)
     {
         data->tex_y = (int)data->tex_position & (64 - 1);
         data->tex_y += 1;
@@ -69,6 +69,7 @@ void    print_pixels(t_data *data)
             data->tex_color = data->img_west.addr + (data->tex_y * data->img_west.line_length - (data->tex_x + 1) * (data->img_west.bits_per_pixel / 8));
         data->tex_pixel= data->cub.addr + (data->j * data->cub.line_length + data->i * (data->cub.bits_per_pixel / 8));
         *(int *)data->tex_pixel = *(int *)data->tex_color;
+        data->j++;
     }
 }
 

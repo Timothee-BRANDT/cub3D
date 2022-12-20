@@ -6,7 +6,7 @@
 /*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 10:43:17 by tbrandt           #+#    #+#             */
-/*   Updated: 2022/12/17 16:10:06 by tbrandt          ###   ########.fr       */
+/*   Updated: 2022/12/20 13:33:57by tbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,18 @@ void build_window(t_data *data)
     data->cub.img_data = mlx_new_image(data->ptr, WIDTH, HEIGHT);
     data->cub.addr = mlx_get_data_addr(data->cub.img_data, &data->cub.bits_per_pixel, &data->cub.line_length, &data->cub.endian);
     set_textures_img(data);
-	print_sky(data);
-	print_ground(data);
 	lets_play(data);
+    mlx_hook(data->mlx_win, 2, 0, key_press, data);
+    // mlx_loop_hook(data->ptr, key_press, data);
     mlx_loop(data->ptr);
 }
 
 void    lets_play(t_data *data)
 {
-    while (data->i < WIDTH)
+    print_ground(data);
+    print_sky(data);
+    data->i = 0;
+    while (data->i <= WIDTH)
     {
         dda(data);
         set_textures_variables(data);

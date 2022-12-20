@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 10:53:41 by tbrandt           #+#    #+#             */
-/*   Updated: 2022/12/14 12:05:53 by tbrandt          ###   ########.fr       */
+/*   Updated: 2022/12/20 15:32:00 by tbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@
 
 #define WIDTH 920
 #define HEIGHT 540
+
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define KEY_W 13
+# define KEY_ESC 53
+
 
 typedef struct s_img
 {
@@ -146,5 +153,9 @@ void	lets_play(t_data *data);
 void 	build_window(t_data *data);
 void 	set_textures_variables(t_data *data);
 void	print_pixels(t_data *data);
-
+void	destroy_window(int keycode, t_data *data);
+int		ft_close(t_data *data);
+int		key_press(int keycode, t_data *data);
+void	move_w(t_data *data);
+void	move_s(t_data *data);
 #endif
