@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 00:09:37 by mmatthie          #+#    #+#             */
-/*   Updated: 2022/12/22 14:43:52 by mmatthie         ###   ########.fr       */
+/*   Updated: 2022/12/22 17:21:53 by tbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,10 @@
 
 int	ft_check_cub(char	*filename)
 {
-	char	*str;
 	size_t	sizelen;
-	int		i;
 
 	sizelen = ft_strlen_v2(filename);
-	i = 0;
-	while (filename[i] && filename[i] != '.')
-	{
-		i++;
-		sizelen--;
-	}
-	if (filename[i] && sizelen == 4)
-		str = filename + i;
-	else
-		return (1);
-	if (!ft_strncmp_v2(str, ".cub", ft_strlen_v2(str)))
+	if (!ft_strncmp_v2(&filename[sizelen - 4], ".cub", 4))
 		return (0);
 	return (1);
 }
@@ -45,7 +33,7 @@ int	ft_check_access(char	*filename)
 	{
 		fd = access(filename, O_RDONLY);
 		if (fd == -1)
-			print_and_exit("error: access not allowed\n", fd);
+			print_and_exit("Error : problem on textures\n", fd);
 	}
 	return (1);
 }

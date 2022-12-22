@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+         #
+#    By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/13 10:49:10 by tbrandt           #+#    #+#              #
-#    Updated: 2022/12/22 15:42:20 by mmatthie         ###   ########.fr        #
+#    Updated: 2022/12/22 16:45:24 by tbrandt          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC =	parsing/check_file.c		\
 		raycasting/dda.c			\
 		raycasting/keys.c			\
 		raycasting/moves.c			\
+		raycasting/utils.c			\
 		main.c						\
 
 OBJ = $(SRC:%.c=%.o)

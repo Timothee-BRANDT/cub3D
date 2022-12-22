@@ -6,7 +6,7 @@
 /*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 13:57:19 by tbrandt           #+#    #+#             */
-/*   Updated: 2022/12/20 15:32:15 by tbrandt          ###   ########.fr       */
+/*   Updated: 2022/12/22 17:12:12 by tbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,40 +19,34 @@ int	destroy_window(int keycode, t_data *data)
 	exit(2);
 }
 
-int	exit_game(t_data *data)
-{
-	free(data->map);
-	exit(1);
-}
-
 void	rotate_left(t_data *data)
 {
 	double	rotate;
-	double	old_dirX;
-	double	old_planeX;
+	double	old_dir_x;
+	double	old_plane_x;
 
-	old_dirX = data->dirX;
-	old_planeX = data->planeX;
+	old_dir_x = data->dir_x;
+	old_plane_x = data->plane_x;
 	rotate = 0.10;
-	data->dirX = data->dirX * cos(-rotate) - data->dirY * sin(-rotate);
-	data->dirY = old_dirX * sin(-rotate) + data->dirY * cos(-rotate);
-	data->planeX = data->planeX * cos(-rotate) - data->planeY * sin(-rotate);
-	data->planeY = old_planeX * sin(-rotate) + data->planeY * cos(-rotate);
+	data->dir_x = data->dir_x * cos(-rotate) - data->dir_y * sin(-rotate);
+	data->dir_y = old_dir_x * sin(-rotate) + data->dir_y * cos(-rotate);
+	data->plane_x = data->plane_x * cos(-rotate) - data->plane_y * sin(-rotate);
+	data->plane_y = old_plane_x * sin(-rotate) + data->plane_y * cos(-rotate);
 }
 
 void	rotate_right(t_data *data)
 {
 	double	rotate;
-	double	old_dirX;
-	double	old_planeX;
+	double	old_dir_x;
+	double	old_plane_x;
 
-	old_dirX = data->dirX;
-	old_planeX = data->planeX;
+	old_dir_x = data->dir_x;
+	old_plane_x = data->plane_x;
 	rotate = 0.10;
-	data->dirX = data->dirX * cos(rotate) - data->dirY * sin(rotate);
-	data->dirY = old_dirX * sin(rotate) + data->dirY * cos(rotate);
-	data->planeX = data->planeX * cos(rotate) - data->planeY * sin(rotate);
-	data->planeY = old_planeX * sin(rotate) + data->planeY * cos(rotate);
+	data->dir_x = data->dir_x * cos(rotate) - data->dir_y * sin(rotate);
+	data->dir_y = old_dir_x * sin(rotate) + data->dir_y * cos(rotate);
+	data->plane_x = data->plane_x * cos(rotate) - data->plane_y * sin(rotate);
+	data->plane_y = old_plane_x * sin(rotate) + data->plane_y * cos(rotate);
 }
 
 void	move(t_data *data, int code)

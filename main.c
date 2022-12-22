@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 10:47:17 by tbrandt           #+#    #+#             */
-/*   Updated: 2022/12/22 15:55:08 by mmatthie         ###   ########.fr       */
+/*   Updated: 2022/12/22 18:23:54 by tbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int main(int ac, char *av[])
+int	main(int ac, char *av[])
 {
 	t_data	*data;
 

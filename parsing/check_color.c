@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 22:19:15 by mmatthie          #+#    #+#             */
-/*   Updated: 2022/12/22 14:30:05 by mmatthie         ###   ########.fr       */
+/*   Updated: 2022/12/22 17:06:14 by tbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,19 @@ void	get_rgb(char	**tab, t_data	*data, int mod)
 	{
 		if (mod == 1)
 		{
-			data->C = malloc(sizeof(int) * 3);
-			if (!data->C)
+			data->c = malloc(sizeof(int) * 3);
+			if (!data->c)
 				print_and_exit("malloc error\n", -1);
 			while (++i <= 2)
-				data->C[i] = ft_atoi(tab[i]);
+				data->c[i] = ft_atoi(tab[i]);
 		}
 		else if (mod == 2)
 		{
-			data->F = malloc(sizeof(int) * 3);
-			if (!data->F)
+			data->f = malloc(sizeof(int) * 3);
+			if (!data->f)
 				print_and_exit("malloc error\n", -1);
 			while (++i <= 2)
-				data->F[i] = ft_atoi(tab[i]);
+				data->f[i] = ft_atoi(tab[i]);
 		}
 	}
 }

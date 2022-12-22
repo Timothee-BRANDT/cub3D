@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 23:07:03 by mmatthie          #+#    #+#             */
-/*   Updated: 2022/12/22 14:05:42 by mmatthie         ###   ########.fr       */
+/*   Updated: 2022/12/22 17:06:14 by tbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void	get_the_map(char	*str, t_data	*data)
 	check_allowed_space(data);
 	if (!check_position(data))
 		print_and_exit("please init a position for the player\n", -1);
-	data->floor_color = rgb_to_int(data->F[0], data->F[1], data->F[2]);
-	data->sky_color = rgb_to_int(data->C[0], data->C[1], data->C[2]);
+	data->floor_color = rgb_to_int(data->f[0], data->f[1], data->f[2]);
+	data->sky_color = rgb_to_int(data->c[0], data->c[1], data->c[2]);
 	free_int_tab(data);
 }
 

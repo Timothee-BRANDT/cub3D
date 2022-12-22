@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 23:12:35 by mmatthie          #+#    #+#             */
-/*   Updated: 2022/12/22 15:01:41 by mmatthie         ###   ########.fr       */
+/*   Updated: 2022/12/22 18:25:30 by tbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ void	parse(char *filename, t_data	*data)
 			ft_check_texture(str, data);
 			free (str);
 		}
-		str = get_next_line(data->fd);
+		if (!ft_checker(data))
+			str = get_next_line(data->fd);
 	}
 	if (!ft_checker(data))
 		print_and_exit("texture uncompleted\n", -1);
-	free (str);
 }
 
 void	*ft_calloc( size_t	count, size_t	size)

@@ -3,99 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 17:13:06 by tbrandt           #+#    #+#             */
-/*   Updated: 2022/12/22 13:52:00 by mmatthie         ###   ########.fr       */
+/*   Created: 2021/12/01 19:17:40 by mmatthie          #+#    #+#             */
+/*   Updated: 2022/12/22 18:04:18 by tbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strchr_gnl(char *str, int c)
+size_t	ft_strlen_g(char	*str)
 {
-	int		i;
+	size_t	i;
 
 	i = 0;
-	while (str && str[i])
-	{
-		if (str[i] == c)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
-int	ft_strlen_gnl(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (0);
 	while (str[i])
 		i++;
 	return (i);
 }
 
-char	*ft_strdup_gnl(char *str)
+char	*ft_isn(char	*str, int c)
 {
-	char	*ptr;
-	int		i;
+	size_t	i;
 
-	ptr = malloc(sizeof(char) * (ft_strlen_gnl(str) + 1));
-	if (!ptr || !str)
-		return (NULL);
 	i = 0;
-	while (str[i])
-	{
-		ptr[i] = str[i];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
-}
-
-char	*ft_strndup_gnl(char *str, int n)
-{
-	char	*ptr;
-	int		i;
-
-	ptr = malloc(sizeof(char) * (n + 2));
-	if (!ptr || !str)
-		return (NULL);
-	i = 0;
-	while (str[i] && (i <= n))
-	{
-		ptr[i] = str[i];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
-}
-
-char	*ft_strjoin_gnl(char *s1, char *s2)
-{
-	char	*str;
-	int		i;
-	int		j;
-
-	str = malloc(sizeof(char) * (ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1));
 	if (!str)
 		return (NULL);
-	i = 0;
+	while (str[i])
+	{
+		if (str[i] == (char)c)
+			return ((char *)&str[i]);
+		i++;
+	}
+	return (NULL);
+}
+
+char	*ft_strjoin_g(char	*src, char	*dest)
+{
+	size_t	i;
+	size_t	j;
+	char	*newline;
+
+	if (!src)
+	{
+		src = malloc(sizeof(char) * 1);
+		src[0] = 0;
+	}
+	if (!src || !dest)
+		return (NULL);
+	newline = malloc(sizeof(char) * ft_strlen_g(src) + ft_strlen_g(dest) + 1);
+	if (!newline)
+		return (NULL);
+	i = -1;
+	while (src[++i])
+		newline[i] = src[i];
 	j = 0;
-	while (s1 && s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	while (s2 && s2[j])
-	{
-		str[i] = s2[j];
-		i++;
-		j++;
-	}
-	str[i] = '\0';
-	return (str);
+	while (dest[j])
+		newline[i++] = dest[j++];
+	newline[i] = 0;
+	free (src);
+	return (newline);
 }

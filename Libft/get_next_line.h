@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 17:20:19 by tbrandt           #+#    #+#             */
-/*   Updated: 2022/12/22 13:56:11 by mmatthie         ###   ########.fr       */
+/*   Created: 2021/12/01 19:17:47 by mmatthie          #+#    #+#             */
+/*   Updated: 2022/12/22 18:02:40 by tbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+# define BUFFER_SIZE 42
+# include <string.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <stdio.h>
 
-#define BUFFER_SIZE 100
-
-# include	<stdlib.h> // malloc
-# include	<unistd.h>	// read
-# include	<sys/types.h> // open
-# include	<sys/stat.h> // open
-# include	<fcntl.h> // open
-
+size_t	ft_strlen_g(char	*str);
+char	*ft_isn(char	*str, int c);
+char	*ft_strjoin_g(char	*src, char	*dest);
+char	*ft_makeline(char	*save);
+char	*ft_restline(char	*save);
 char	*get_next_line(int fd);
-int		ft_strchr_gnl(char *s, int c);
-char	*ft_strdup_gnl(char *s);
-char	*ft_strndup_gnl(char *s, int n);
-char	*ft_strjoin_gnl(char *s1, char *s2);
-int		ft_strlen_gnl(char *str);
 
 #endif

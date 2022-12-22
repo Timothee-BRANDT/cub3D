@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_content.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 23:21:16 by mmatthie          #+#    #+#             */
-/*   Updated: 2022/12/22 13:45:39 by mmatthie         ###   ########.fr       */
+/*   Updated: 2022/12/22 17:26:33 by tbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_checker_for_map(t_data	*data)
 				i++;
 			else
 				print_and_exit \
-				("chose only 1 position for the player please\n", -1);
+				("Error : Problem on the map\n", -1);
 		}
 	}
 }
@@ -71,7 +71,7 @@ void	check_map_content(t_data	*data)
 			if (check_token2(data->map[x][y], data))
 				y++;
 			else
-				print_and_exit("invalid character in map\n", -1);
+				print_and_exit("Error : Problem on the map\n", -1);
 		}
 		x++;
 	}

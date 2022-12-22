@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 00:07:44 by mmatthie          #+#    #+#             */
-/*   Updated: 2022/12/22 15:30:23 by mmatthie         ###   ########.fr       */
+/*   Updated: 2022/12/22 17:28:43 by tbrandt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,7 @@ void	ft_check_texture(char	*str, t_data	*data)
 		{
 			res = check_token(str[i]);
 			if (res == -1)
-				print_and_exit ("error: bad texture path -> \
-				begin with NO || SO || WE || EA || C || F\n", -1);
+				print_and_exit("Error : Problem in texture path\n", -1);
 			else
 				ft_texture(res, str, i, data);
 		}
