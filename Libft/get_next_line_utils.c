@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 17:13:06 by tbrandt           #+#    #+#             */
-/*   Updated: 2022/11/03 16:15:58 by tbrandt          ###   ########.fr       */
+/*   Updated: 2022/12/22 13:52:00 by mmatthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strchr(char *str, int c)
+int	ft_strchr_gnl(char *str, int c)
 {
 	int		i;
 
@@ -26,7 +26,7 @@ int	ft_strchr(char *str, int c)
 	return (-1);
 }
 
-int	ft_strlen(char *str)
+int	ft_strlen_gnl(char *str)
 {
 	int	i;
 
@@ -38,12 +38,12 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strdup(char *str)
+char	*ft_strdup_gnl(char *str)
 {
 	char	*ptr;
 	int		i;
 
-	ptr = malloc(sizeof(char) * (ft_strlen(str) + 1));
+	ptr = malloc(sizeof(char) * (ft_strlen_gnl(str) + 1));
 	if (!ptr || !str)
 		return (NULL);
 	i = 0;
@@ -56,7 +56,7 @@ char	*ft_strdup(char *str)
 	return (ptr);
 }
 
-char	*ft_strndup(char *str, int n)
+char	*ft_strndup_gnl(char *str, int n)
 {
 	char	*ptr;
 	int		i;
@@ -74,13 +74,13 @@ char	*ft_strndup(char *str, int n)
 	return (ptr);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	char	*str;
 	int		i;
 	int		j;
 
-	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	str = malloc(sizeof(char) * (ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1));
 	if (!str)
 		return (NULL);
 	i = 0;

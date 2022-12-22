@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/20 23:01:31 by mmatthie          #+#    #+#             */
+/*   Updated: 2022/12/22 13:45:39 by mmatthie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub.h"
 
-int	ft_strncmp(char	*s1, char	*s2, size_t	n)
+int	ft_strncmp_v2(char	*s1, char	*s2, size_t	n)
 {
 	size_t			i;
 	unsigned char	str1;
@@ -45,7 +57,7 @@ void	ft_print_split(char	**map)
 		printf("Map is empty.\n");
 }
 
-int print_and_exit(char	*str, int ret)
+int	print_and_exit(char	*str, int ret)
 {
 	write(2, str, ft_strlen_v2(str));
 	exit(ret);
@@ -53,7 +65,7 @@ int print_and_exit(char	*str, int ret)
 
 int	ft_isspace(int c)
 {
-	if (((c == '\n') || (c == '\v') || (c == '\t')) \
+	if ((c == '\n') || (c == '\v') \
 	|| ((c == '\r') || (c == '\f') || (c == ' ')))
 		return (1);
 	return (0);

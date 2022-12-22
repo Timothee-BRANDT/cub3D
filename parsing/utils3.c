@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils3.C                                           :+:      :+:    :+:   */
+/*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 11:26:27 by mmatthie          #+#    #+#             */
-/*   Updated: 2022/12/15 15:59:46 by mmatthie         ###   ########.fr       */
+/*   Updated: 2022/12/22 14:07:07 by mmatthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int	ft_isdigit(int arg)
 		return (1);
 }
 
-int ft_strlen2tab(char	**strs)
+int	ft_strlen2tab(char	**strs)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (strs)
@@ -57,4 +57,20 @@ int ft_strlen2tab(char	**strs)
 			i++;
 	}
 	return (i);
+}
+
+void	full_free(char	**tab)
+{
+	int	i;
+
+	i = 0;
+	if (tab)
+	{
+		while (tab[i])
+		{
+			free(tab[i]);
+			i++;
+		}
+		free(tab);
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 17:09:26 by tbrandt           #+#    #+#             */
-/*   Updated: 2022/06/22 13:25:35 by tbrandt          ###   ########.fr       */
+/*   Updated: 2022/12/22 13:52:41 by mmatthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	push_buffer(char **str, char **buffer, char **tmp)
 {
-	*tmp = ft_strjoin(*str, *buffer);
+	*tmp = ft_strjoin_gnl(*str, *buffer);
 	free(*str);
-	*str = ft_strdup(*tmp);
+	*str = ft_strdup_gnl(*tmp);
 	free(*tmp);
 }
 
 void	is_excess(char **str, char **excess)
 {
-	*str = ft_strjoin(*str, *excess);
+	*str = ft_strjoin_gnl(*str, *excess);
 	free(*excess);
 	*excess = 0;
 }
@@ -32,10 +32,10 @@ char	*return_line(char **excess, char *str, char *tmp, int read_value)
 {
 	if (read_value <= 0 && str[0] != '\0')
 		return (str);
-	if (ft_strchr(str, '\n') >= 0)
+	if (ft_strchr_gnl(str, '\n') >= 0)
 	{
-		tmp = ft_strndup(str, ft_strchr(str, '\n'));
-		*excess = ft_strdup(str + (ft_strchr(str, '\n') + 1));
+		tmp = ft_strndup_gnl(str, ft_strchr_gnl(str, '\n'));
+		*excess = ft_strdup_gnl(str + (ft_strchr_gnl(str, '\n') + 1));
 		free(str);
 		return (tmp);
 	}
@@ -60,7 +60,7 @@ char	*get_next_line(int fd)
 	}
 	read_value = 1;
 	is_excess(&str, &excess);
-	while ((read_value > 0) && ft_strchr(str, '\n') < 0)
+	while ((read_value > 0) && ft_strchr_gnl(str, '\n') < 0)
 	{
 		read_value = read(fd, buffer, BUFFER_SIZE);
 		buffer[read_value] = '\0';

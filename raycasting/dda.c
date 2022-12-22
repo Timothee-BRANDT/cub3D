@@ -81,7 +81,6 @@ void build_window(t_data *data)
 {
     data->ptr = mlx_init();
     data->mlx_win = mlx_new_window(data->ptr, WIDTH, HEIGHT, "cub3D");
-    init_data(data);
     data->cub.img_data = mlx_new_image(data->ptr, WIDTH, HEIGHT);
     data->cub.addr = mlx_get_data_addr(data->cub.img_data, &data->cub.bits_per_pixel, &data->cub.line_length, &data->cub.endian);
     set_textures_img(data);

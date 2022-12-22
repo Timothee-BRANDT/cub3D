@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 10:47:17 by tbrandt           #+#    #+#             */
-/*   Updated: 2022/12/14 12:10:06 by tbrandt          ###   ########.fr       */
+/*   Updated: 2022/12/22 15:55:08 by mmatthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 int main(int ac, char *av[])
 {
-    t_data *data;
+	t_data	*data;
 
 	data = malloc(sizeof(t_data));
 	if (ac > 1 && ac < 3)
 	{
 		if (ft_check_cub(av[1]) == 0)
 		{
-			if (ft_check_access(av[1]) != -1)
+			ft_check_access(av[1]);
+			if (ft_check_dir(av[1]) == -1)
 			{
-				if (ft_check_dir(av[1]) == -1)
-				{
-					data->map = parse(av[1]);
-					// check_map(data->map);
-                }
-
+				init_checker(data);
+				parse(av[1], data);
+				ft_check_map(data, av[1]);
+				get_the_map(av[1], data);
+				build_window(data);
 			}
 		}
 		else
@@ -36,5 +36,4 @@ int main(int ac, char *av[])
 	}
 	else
 		printf("bad nb of args\n");
-    build_window(data);
 }

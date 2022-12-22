@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/21 00:07:44 by mmatthie          #+#    #+#             */
+/*   Updated: 2022/12/22 15:30:23 by mmatthie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub.h"
 
-int check_token(char	c)
+int	check_token(char c)
 {
 	if (c)
 	{
@@ -15,34 +27,34 @@ int check_token(char	c)
 		else if (c == 'C')
 			return (4);
 		else if (c == 'F')
-			return (5);	
+			return (5);
 		else
-			return(-1);
+			return (-1);
 	}
 	else
 		return (42);
 }
 
-void ft_texture(int	mod, char	*path, int begin, t_pars	*data)
+void	ft_texture(int mod, char	*path, int begin, t_data	*data)
 {
 	if (mod == 0)
-		check_NO(path, data, begin);
+		check_no(path, data, begin);
 	if (mod == 1)
-		check_SO(path, data, begin);
+		check_so(path, data, begin);
 	if (mod == 2)
-		check_WE(path, data, begin);
+		check_we(path, data, begin);
 	if (mod == 3)
-		check_EA(path, data, begin);
+		check_ea(path, data, begin);
 	if (mod == 4)
-		check_C(path, data, begin);
+		check_c(path, data, begin);
 	if (mod == 5)
-		check_F(path, data, begin);
+		check_f(path, data, begin);
 }
 
-int	ft_check_texture(char	*str, t_data	*data)
+void	ft_check_texture(char	*str, t_data	*data)
 {
-	int i;
-	int res;
+	int	i;
+	int	res;
 
 	i = 0;
 	res = 0;
@@ -54,12 +66,10 @@ int	ft_check_texture(char	*str, t_data	*data)
 		{
 			res = check_token(str[i]);
 			if (res == -1)
-				print_and_exit("error: bad texture path -> begin with NO || SO || WE || EA || C || F\n", -1);
+				print_and_exit ("error: bad texture path -> \
+				begin with NO || SO || WE || EA || C || F\n", -1);
 			else
 				ft_texture(res, str, i, data);
 		}
-		else
-			print_and_exit("empty path for texture\n", -1);
 	}
-	return (0);
 }

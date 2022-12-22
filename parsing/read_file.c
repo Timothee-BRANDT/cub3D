@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_file.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/20 23:12:35 by mmatthie          #+#    #+#             */
+/*   Updated: 2022/12/22 15:01:41 by mmatthie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub.h"
 
 char	*ft_read_file(int fd)
@@ -14,7 +26,7 @@ char	*ft_read_file(int fd)
 		if (byte_read == -1)
 		{
 			write(2, "read error\n", 11);
-			exit (-1);
+			exit(-1);
 		}
 		buf[byte_read] = '\0';
 		str = ft_strjoin_v2(str, buf);
@@ -24,27 +36,47 @@ char	*ft_read_file(int fd)
 	return (str);
 }
 
-char	**parse(char *filename)
+int	ft_is_empty(char	*str)
 {
-	int		fd;
-	char	*str;
-	char	**map;
+	int	i;
 
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
+	i = 0;
+	if (str)
 	{
-		write(2, "error in fd\n", 12);
-		exit (-1);
+		while (str[i])
+		{
+			if (ft_isspace(str[i]))
+				i++;
+			else
+				return (1);
+		}
 	}
-	str = ft_read_file(fd);
-	close(fd);
-	if (!str)
-		return (NULL);
-	map = ft_split(str, '\n');
-	if (!map)
-		return (NULL);
+	return (0);
+}
+
+void	parse(char *filename, t_data	*data)
+{
+	char	*str;
+
+	(void)data;
+	data->fd = open(filename, O_RDONLY);
+	if (data->fd == -1)
+		print_and_exit("error in open\n", -1);
+	str = get_next_line(data->fd);
+	while (str && !ft_checker(data))
+	{
+		if (str && !ft_is_empty(str) && !ft_checker(data))
+			free (str);
+		else if (str && ft_is_empty(str) && !ft_checker(data))
+		{
+			ft_check_texture(str, data);
+			free (str);
+		}
+		str = get_next_line(data->fd);
+	}
+	if (!ft_checker(data))
+		print_and_exit("texture uncompleted\n", -1);
 	free (str);
-	return (map);
 }
 
 void	*ft_calloc( size_t	count, size_t	size)

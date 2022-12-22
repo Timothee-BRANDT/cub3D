@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_params.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 13:47:17 by tbrandt           #+#    #+#             */
-/*   Updated: 2022/12/20 15:52:32 by tbrandt          ###   ########.fr       */
+/*   Updated: 2022/12/22 13:35:26 by mmatthie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,16 +99,6 @@ void    set_textures_img(t_data *data)
     data->img_east.addr = mlx_get_data_addr(data->img_east.img_data, &data->img_east.bits_per_pixel, &data->img_east.line_length, &data->img_east.endian);
     data->img_west.img_data = mlx_xpm_file_to_image(data->ptr, data->path_west, &a, &b);
     data->img_west.addr = mlx_get_data_addr(data->img_west.img_data, &data->img_west.bits_per_pixel, &data->img_west.line_length, &data->img_west.endian);
-}
-
-void init_data(t_data *data)
-{
-    data->path_north = ft_strdup("textures/basalt.xpm");
-    data->path_south = ft_strdup("textures/cracked_wall.xpm");
-    data->path_east = ft_strdup("textures/diamond.xpm");
-    data->path_west = ft_strdup("textures/furnace_front_on.xpm");
-    data->floor_color = rgb_to_int(124, 122, 0); // parsing manu
-    data->sky_color = rgb_to_int(0, 255, 255);   // parsing manu
     data->ms = 0.10;
     check_player_orientation(data);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tbrandt <tbrandt@student.42.fr>            +#+  +:+       +#+         #
+#    By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/13 10:49:10 by tbrandt           #+#    #+#              #
-#    Updated: 2022/12/20 14:23:34 by tbrandt          ###   ########.fr        #
+#    Updated: 2022/12/22 15:42:20 by mmatthie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,17 +17,27 @@ I_DIR = include
 L_FT = libft
 M_MLX = minilibx
 
-SRC =	parsing/check_file.c	\
-		parsing/utils.c			\
-		parsing/ft_split.c		\
-		parsing/read_file.c		\
-		raycasting/set_params.c	\
-		raycasting/colors.c		\
-		raycasting/painting.c	\
-		raycasting/dda.c		\
-		raycasting/keys.c		\
-		raycasting/moves.c		\
-		main.c					\
+SRC =	parsing/check_file.c		\
+		parsing/utils.c				\
+		parsing/check_color.c		\
+		parsing/check_map_content.c	\
+		parsing/check_map.c			\
+		parsing/check_path_texture.c\
+		parsing/check_space.c		\
+		parsing/check_space2.c		\
+		parsing/read_map.c			\
+		parsing/check_texture.c		\
+		parsing/ft_split.c			\
+		parsing/read_file.c			\
+		parsing/utils2.c			\
+		parsing/utils3.c			\
+		raycasting/set_params.c		\
+		raycasting/colors.c			\
+		raycasting/painting.c		\
+		raycasting/dda.c			\
+		raycasting/keys.c			\
+		raycasting/moves.c			\
+		main.c						\
 
 OBJ = $(SRC:%.c=%.o)
 

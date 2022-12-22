@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmatthie <mmatthie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/21 00:10:47 by mmatthie          #+#    #+#             */
+/*   Updated: 2022/12/22 14:25:42 by mmatthie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub.h"
 
-char	*ft_strdup(char	*str)
+char	*ft_strdup_v2(char	*str)
 {
-	int i;
+	int		i;
 	char	*newline;
 
 	i = ft_strlen_v2(str);
@@ -12,13 +24,13 @@ char	*ft_strdup(char	*str)
 	newline = malloc(sizeof(char) * i + 1);
 	if (!newline)
 		return (NULL);
-	newline[i] = '\0';
 	i = 0;
 	while (str[i])
 	{
 		newline[i] = str[i];
 		i++;
 	}
+	newline[i] = '\0';
 	return (newline);
 }
 
@@ -36,7 +48,7 @@ char	*ft_join_free_ss(char *s1, char *s2)
 	}
 	if (!s2)
 		return (NULL);
-	join = malloc(sizeof(char) * ((int)ft_strlen_v2(s1) + (int)ft_strlen_v2(s2) + 1));
+	join = malloc(sizeof(char) * ft_strlen_v2(s1) + ft_strlen_v2(s2) + 1);
 	if (!join)
 		return (NULL);
 	i = -1;
@@ -68,13 +80,13 @@ static int	get_len(int n)
 	return (res);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa_v2(int n)
 {
 	char	*res;
 	int		len_res;
 
 	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
+		return (ft_strdup_v2("-2147483648"));
 	len_res = (get_len(n));
 	res = malloc(sizeof(char) * len_res + 1);
 	if (!res)
@@ -95,8 +107,9 @@ char	*ft_itoa(int n)
 	return (res);
 }
 
-void	free_and_replace(t_pars	*data, int mod, int change)
+void	free_and_replace(t_data	*data, int mod, int change)
 {
+	(void)change;
 	free(data->checker[mod]);
-	data->checker[mod] = ft_strdup(ft_itoa(change));
+	data->checker[mod] = ft_strdup_v2("1");
 }
