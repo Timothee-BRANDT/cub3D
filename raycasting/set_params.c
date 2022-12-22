@@ -109,6 +109,6 @@ void init_data(t_data *data)
     data->path_west = ft_strdup("textures/furnace_front_on.xpm");
     data->floor_color = rgb_to_int(124, 122, 0); // parsing manu
     data->sky_color = rgb_to_int(0, 255, 255);   // parsing manu
-    data->ms = 0.15;
+    data->ms = 0.10;
     check_player_orientation(data);
 }

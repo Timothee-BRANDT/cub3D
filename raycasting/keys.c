@@ -12,11 +12,17 @@
 
 #include "../cub.h"
 
-void	destroy_window(int keycode, t_data *data)
+int	destroy_window(int keycode, t_data *data)
 {
 	mlx_destroy_window(data->ptr, data->mlx_win);
 	free(data->map);
 	exit(2);
+}
+
+int	exit_game(t_data *data)
+{
+	free(data->map);
+	exit(1);
 }
 
 void	rotate_left(t_data *data)

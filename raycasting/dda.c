@@ -87,7 +87,7 @@ void build_window(t_data *data)
     set_textures_img(data);
 	lets_play(data);
     mlx_hook(data->mlx_win, 2, 0, key_press, data);
-    // mlx_loop_hook(data->ptr, key_press, data);
+    mlx_hook(data->mlx_win, 17, 0, exit_game, data);
     mlx_loop(data->ptr);
 }
 

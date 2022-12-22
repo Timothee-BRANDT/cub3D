@@ -26,8 +26,7 @@ int main(int ac, char *av[])
 				if (ft_check_dir(av[1]) == -1)
 				{
 					data->map = parse(av[1]);
-					//check_map(map);
-					ft_print_split(data->map);
+					// check_map(data->map);
                 }
 
 			}
@@ -37,6 +36,5 @@ int main(int ac, char *av[])
 	}
 	else
 		printf("bad nb of args\n");
-    //parsing manu
     build_window(data);
 }
